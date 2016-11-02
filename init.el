@@ -21,6 +21,7 @@
     neotree
     projectile
     py-autopep8
+    pyvenv
     shell-pop
     smartparens
     swift-mode))
@@ -51,9 +52,16 @@
 (setq mouse-sel-mode t)
 (ac-config-default)
 
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+)
+
 ;; Global
 (global-linum-mode t) ;; enable line numbers globally
 (setq linum-format "%d ")
+(global-set-key [f4] 'helm-projectile)
 (global-set-key [f5] 'shell-pop)
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key [f7] 'toggle-comment-on-line) 
