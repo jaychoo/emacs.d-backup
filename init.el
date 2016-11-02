@@ -13,6 +13,7 @@
     elpy
     flycheck
     helm-core
+    helm-projectile
     magit
     material-theme
     neotree
@@ -32,11 +33,16 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 (load-theme 'material t) ;; load material theme
 (require 'helm)
+(require 'helm-projectile)
 (require 'mouse)
 (require 'neotree)
 (require 'shell-pop)
 (require 'smartparens-config)
-(projectile-mode)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
 (xterm-mouse-mode t)
 (defun track-mouse (e))
 (setq mouse-sel-mode t)
