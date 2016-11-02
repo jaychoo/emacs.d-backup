@@ -14,6 +14,7 @@
     flycheck
     helm-core
     helm-projectile
+    js2-mode
     magit
     material-theme
     neotree
@@ -54,6 +55,10 @@
 (global-set-key [f5] 'shell-pop)
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key [f7] 'toggle-comment-on-line) 
+(global-auto-complete-mode t)
+(setq ac-auto-start 2)
+(setq ac-ignore-case nil)
+(electric-pair-mode 1)
 
 ;; Python
 (setq python-shell-virtualenv-path "~/.pyenv/versions/emacs")                        
@@ -65,6 +70,15 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+;; JS
+(setq javascript-indent-level 2) ; javascript-mode
+(setq js-indent-level 2) ; js-mode
+(setq js2-basic-offset 2) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
+(setq web-mode-markup-indent-offset 2) ; web-mode, html tag in html file
+(setq web-mode-css-indent-offset 2) ; web-mode, css in html file
+(setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
+(setq css-indent-offset 2) ; css-mode
 
 
 ;; init.el ends here
