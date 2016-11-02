@@ -12,6 +12,7 @@
     ein
     elpy
     flycheck
+    go-mode
     helm-core
     helm-projectile
     js2-mode
@@ -70,6 +71,10 @@
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+;; Golang
+;;(require 'go-autocomplete)
+
 
 ;; JS
 (setq javascript-indent-level 2) ; javascript-mode
