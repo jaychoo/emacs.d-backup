@@ -22,7 +22,8 @@
     projectile
     py-autopep8
     shell-pop
-    smartparens))
+    smartparens
+    swift-mode))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
