@@ -1,5 +1,4 @@
 (require 'package)
-
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/") t)
 
@@ -9,6 +8,7 @@
 
 (defvar devpackages
   '(better-defaults
+    auto-complete
     ein
     elpy
     flycheck
@@ -18,7 +18,8 @@
     neotree
     projectile
     py-autopep8
-    shell-pop))
+    shell-pop
+    smartparens))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -34,13 +35,16 @@
 (require 'mouse)
 (require 'neotree)
 (require 'shell-pop)
+(require 'smartparens-config)
 (projectile-mode)
 (xterm-mouse-mode t)
 (defun track-mouse (e))
 (setq mouse-sel-mode t)
+(ac-config-default)
 
 ;; Global
 (global-linum-mode t) ;; enable line numbers globally
+(setq linum-format "%d ")
 (global-set-key [f5] 'shell-pop)
 (global-set-key [f8] 'neotree-toggle)
 (global-set-key [f7] 'toggle-comment-on-line) 
@@ -60,13 +64,13 @@
 ;; init.el ends here
 
 (custom-set-variables
- '(shell-pop-window-size 30)
- '(shell-pop-window-position "bottom")
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (flycheck material-theme elpy better-defaults))))
+ '(package-selected-packages (quote (flycheck material-theme elpy better-defaults)))
+ '(shell-pop-window-position "bottom")
+ '(shell-pop-window-size 30))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
