@@ -9,8 +9,10 @@
 (defvar devpackages
   '(better-defaults
     auto-complete
+    company
     ein
     elpy
+    eldoc
     flycheck
     go-mode
     helm-core
@@ -18,13 +20,19 @@
     js2-mode
     magit
     material-theme
+    monokai-theme
     neotree
     projectile
     py-autopep8
     pyvenv
     shell-pop
     smartparens
-    swift-mode))
+    swift-mode
+    rust-mode
+    racer
+    cargo
+    flycheck-rust
+    dockerfile-mode))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
@@ -35,7 +43,8 @@
 ;; --------------------------------------
 
 (setq inhibit-startup-message t) ;; hide the startup message
-(load-theme 'material t) ;; load material theme
+;; (load-theme 'material t) ;; load material theme
+(load-theme 'monokai t)
 (require 'helm)
 (require 'helm-projectile)
 (require 'mouse)
@@ -61,6 +70,9 @@
 ;; Global
 (global-linum-mode t) ;; enable line numbers globally
 (setq linum-format "%d ")
+(setq column-number-mode t)
+
+(global-set-key [f3] 'helm-projectile-grep)
 (global-set-key [f4] 'helm-projectile)
 (global-set-key [f5] 'shell-pop)
 (global-set-key [f8] 'neotree-toggle)
@@ -69,6 +81,7 @@
 (setq ac-auto-start 2)
 (setq ac-ignore-case nil)
 (electric-pair-mode 1)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Python
 (setq python-shell-virtualenv-path "~/.pyenv/versions/emacs")                        
@@ -84,7 +97,6 @@
 ;; Golang
 ;;(require 'go-autocomplete)
 
-
 ;; JS
 (setq javascript-indent-level 2) ; javascript-mode
 (setq js-indent-level 2) ; js-mode
@@ -94,6 +106,26 @@
 (setq web-mode-code-indent-offset 2) ; web-mode, js code in html file
 (setq css-indent-offset 2) ; css-mode
 
+;; Rust
+;; http://julienblanchard.com/2016/fancy-rust-development-with-emacs/
+(require 'flycheck-rust)
+(require 'racer)
+(require 'rust-mode)
+
+(setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+(setq racer-rust-src-path "/Users/jaychoo/Developer/rust/src") ;; Rust source code PATH
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+;; install rustformat - cargo install rustfmt
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+
+
 
 ;; init.el ends here
 
@@ -102,6 +134,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("28130127bbf3072c1bbc7652fca7245f186bb417b3b385a5e4da57b895ffe9d8" default)))
  '(package-selected-packages (quote (flycheck material-theme elpy better-defaults)))
  '(shell-pop-window-position "bottom")
  '(shell-pop-window-size 30))
