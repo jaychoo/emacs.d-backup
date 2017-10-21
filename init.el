@@ -10,6 +10,7 @@
   '(better-defaults
     auto-complete
     company
+    cider
     ein
     elpy
     eldoc
