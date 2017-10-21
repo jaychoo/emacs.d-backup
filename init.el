@@ -11,6 +11,9 @@
     auto-complete
     company
     cider
+    clojure-mode
+    ac-cider
+    paredit
     ein
     elpy
     eldoc
@@ -28,11 +31,11 @@
     pyvenv
     shell-pop
     smartparens
-    swift-mode
-    rust-mode
-    racer
-    cargo
-    flycheck-rust
+    ;; swift-mode
+    ;; rust-mode
+    ;; racer
+    ;; cargo
+    ;; flycheck-rust
     dockerfile-mode))
 
 (mapc #'(lambda (package)
@@ -88,7 +91,7 @@
 (setq python-shell-virtualenv-path "~/.pyenv/versions/emacs")                        
 (setq elpy-rpc-python-command "~/.pyenv/versions/emacs/bin/python") 
 (elpy-enable)
-(elpy-use-ipython)
+;;(elpy-use-ipython)
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
@@ -109,23 +112,30 @@
 
 ;; Rust
 ;; http://julienblanchard.com/2016/fancy-rust-development-with-emacs/
-(require 'flycheck-rust)
-(require 'racer)
-(require 'rust-mode)
 
-(setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
-(setq racer-rust-src-path "/Users/jaychoo/Developer/rust/src") ;; Rust source code PATH
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
+;; (require 'flycheck-rust)
+;; (require 'racer)
+;; (require 'rust-mode)
+
+;; (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+;; (setq racer-rust-src-path "/Users/jaychoo/Developer/rust/src") ;; Rust source code PATH
+;; (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'rust-mode-hook #'company-mode)
+;; (add-hook 'rust-mode-hook 'cargo-minor-mode)
+;; (add-hook 'racer-mode-hook #'eldoc-mode)
+
 ;; install rustformat - cargo install rustfmt
 (add-hook 'rust-mode-hook
           (lambda ()
             (local-set-key (kbd "C-c <tab>") #'rust-format-buffer)))
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 
+;; Clojure
+(add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+(add-hook 'cider-mode-hook 'ac-cider-setup)
+(add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+(eval-after-load "auto-complete"
+    '(add-to-list 'ac-modes 'cider-mode))
 
 
 ;; init.el ends here
