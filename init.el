@@ -23,7 +23,7 @@
     helm-projectile
     js2-mode
     magit
-    material-theme
+    dracula-theme
     monokai-theme
     neotree
     projectile
@@ -45,10 +45,20 @@
 
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
+(setenv
+ "PATH" (concat
+   "/bin:"
+   "/usr/bin:"
+   "/sbin:"
+   "/usr/sbin:"
+   "/usr/local/bin:"
+   "/usr/local/sbin"
+   "~/.local/bin"
+   "~/.pyenv/versions/emacs/bin"))
 
 (setq inhibit-startup-message t) ;; hide the startup message
-;; (load-theme 'material t) ;; load material theme
-(load-theme 'monokai t)
+(load-theme 'dracula t)
+;; (load-theme 'monokai t)
 (require 'helm)
 (require 'helm-projectile)
 (require 'mouse)
@@ -73,7 +83,7 @@
 
 ;; Global
 (global-linum-mode t) ;; enable line numbers globally
-(setq linum-format "%d ")
+;; (setq linum-format "%d ")
 (setq column-number-mode t)
 
 (global-set-key [f3] 'helm-projectile-grep)
@@ -88,10 +98,14 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Python
+(pyvenv-activate "~/.pyenv/versions/emacs")
+(setq exec-path (append exec-path '("~/.pyenv/versions/emacs/bin")))
 (setq python-shell-virtualenv-path "~/.pyenv/versions/emacs")                        
-(setq elpy-rpc-python-command "~/.pyenv/versions/emacs/bin/python") 
+(setq elpy-rpc-python-command "~/.pyenv/versions/emacs/bin/python")
+(setq python-check-command (expand-file-name "~/.pyenv/versions/emacs/bin/flake8"))
 (elpy-enable)
-;;(elpy-use-ipython)
+(setq python-check-command "flake8")
+(elpy-use-ipython)
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
