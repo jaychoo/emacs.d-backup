@@ -1,0 +1,11 @@
+.DS_Store
+.session
+.historian
+*~
+*.dat
+*.eld
+*.eldoc
+elpa/
+abbrev_defs
+history
+recentf
