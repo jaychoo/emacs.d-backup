@@ -19,6 +19,8 @@
     eldoc
     flycheck
     go-mode
+    go-autocomplete
+    flymake-go
     helm-core
     helm-projectile
     js2-mode

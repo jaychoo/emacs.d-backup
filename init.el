@@ -11,5 +11,5 @@
 (require 'init-python)
 (require 'init-javascript)
 (require 'init-clojure)
-(require 'init-rust)
+(require 'init-go)
 (require 'init-local)
