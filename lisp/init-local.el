@@ -18,7 +18,6 @@
 
 (setq inhibit-startup-message t) ;; hide the startup message
 (load-theme 'dracula t)
-;; (load-theme 'monokai t)
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
