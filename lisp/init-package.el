@@ -34,6 +34,8 @@
     anaconda-mode
     shell-pop
     smartparens
+    lua-mode
+    haskell-mode
     ;; swift-mode
     ;; rust-mode
     ;; racer
