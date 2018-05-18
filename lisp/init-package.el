@@ -11,8 +11,8 @@
     auto-complete
     company
     cider
-    clojure-mode
-    ac-cider
+    ;; clojure-mode
+    ;; ac-cider
     paredit
     ein
     elpy
@@ -34,8 +34,10 @@
     anaconda-mode
     shell-pop
     smartparens
-    lua-mode
-    haskell-mode
+    ;; lua-mode
+    ;; haskell-mode
+    vue-mode
+    vue-html-mode
     ;; swift-mode
     ;; rust-mode
     ;; racer

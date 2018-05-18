@@ -8,7 +8,6 @@
 (setq elpy-rpc-python-command "~/.pyenv/versions/emacs/bin/python")
 (setq python-check-command (expand-file-name "~/.pyenv/versions/emacs/bin/flake8"))
 (setq python-check-command "flake8")
-(elpy-use-ipython)
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))

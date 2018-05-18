@@ -45,6 +45,9 @@
 (global-set-key [f7] 'toggle-comment-on-line)
 (global-set-key [f8] 'elpy-format-code)
 
+(global-set-key (kbd "M-0") 'delete-window)
+(global-set-key (kbd "M-1") 'split-window-vertically)
+(global-set-key (kbd "M-2") 'split-window-horizontally)
 
 (global-auto-complete-mode t)
 

@@ -1,4 +1,3 @@
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -10,9 +9,7 @@
 (require 'init-package)
 (require 'init-python)
 (require 'init-javascript)
-(require 'init-clojure)
 (require 'init-go)
-(require 'init-haskell)
 (require 'init-local)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
