@@ -34,15 +34,8 @@
     anaconda-mode
     shell-pop
     smartparens
-    ;; lua-mode
-    ;; haskell-mode
     vue-mode
     vue-html-mode
-    ;; swift-mode
-    ;; rust-mode
-    ;; racer
-    ;; cargo
-    ;; flycheck-rust
     dockerfile-mode))
 
 (mapc #'(lambda (package)
